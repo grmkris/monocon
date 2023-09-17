@@ -1,0 +1,15 @@
+{
+  "name": "monocon",
+  "module": "index.ts",
+  "devDependencies": {
+    "bun-types": "latest",
+    "prettier": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+
+  }
+}
