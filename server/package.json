@@ -1,0 +1,19 @@
+{
+  "name": "monocon",
+  "module": "index.ts",
+  "scripts": {
+    "dev": "bun server.ts",
+    "build": "bun build server.ts"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "prettier": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "zod": "^3.22.2"
+  }
+}
