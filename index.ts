@@ -40,7 +40,7 @@ const server = Bun.serve({
           "Content-Type": "application/json",
         },
       });
-    } else if (request.url === "http://localhost:42069/stream") {
+    } else if (request.url.startsWith("http://localhost:42069/stream")) {
       console.log("streaming");
       const urlParams = new URL(request.url).searchParams;
       const fromStart = urlParams.get("fromStart") === "true";
@@ -50,6 +50,8 @@ const server = Bun.serve({
           if (fromStart) {
             logRows.forEach((line) => {
               controller.enqueue(line);
+              // enqeue a newline to separate the lines
+              controller.enqueue("\n");
             });
           }
           streamController = controller;
