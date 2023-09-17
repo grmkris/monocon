@@ -1,11 +1,26 @@
+import minimist from "minimist";
 const logRowsForServices: string[][] = [];
 
-const services = [
+const example_services = [
   ["bun", "run", "dev:backend-hono"],
   ["bun", "run", "dev:backend-elysia"],
   ["bun", "run", "dev:frontend"],
 ];
 
+// Parse the command-line arguments using minimist
+const argv = minimist(Bun.argv.slice(2));
+
+// Extracting service commands based on the command-line arguments
+const services: string[][] = [];
+for (const key of Object.keys(argv)) {
+  if (key !== "_" && typeof argv[key] === "string") {
+    services.push(["bun", "run", argv[key]]);
+  }
+}
+
+// Start all services
+console.log("starting services", services);
+services.forEach(startService);
 const streamControllers: ReadableStreamDefaultController<string>[] = [];
 
 function startService(serviceCommands: string[], index: number) {
@@ -41,9 +56,6 @@ function startService(serviceCommands: string[], index: number) {
 
   reader.read().then(processResult);
 }
-
-// Start all services
-services.forEach(startService);
 
 const server = Bun.serve({
   port: 42069,
