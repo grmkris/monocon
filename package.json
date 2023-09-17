@@ -10,6 +10,7 @@
     "dev:server": "cd server && bun run dev",
     "dev:ui": "cd ui && bun run dev",
     "build:server": "cd server && bun run build",
-    "build:ui": "cd ui && bun run build"
+    "build:ui": "cd ui && bun run build",
+    "build": "bun build:ui && bun build:server"
   }
 }
